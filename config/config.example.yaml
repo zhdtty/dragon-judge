@@ -1,0 +1,62 @@
+# Dragon Judge 配置文件示例
+# 复制此文件为 config.yaml 并填入你的配置
+
+# Tushare Pro API
+# 获取地址: https://tushare.pro/register
+tushare:
+  token: "your_tushare_token_here"
+  timeout: 30
+
+# 数据库配置
+# 支持 MongoDB 用于存储历史数据
+database:
+  type: "mongodb"  # 或 "sqlite"
+  mongodb:
+    host: "localhost"
+    port: 27017
+    db_name: "dragon_judge"
+    username: ""
+    password: ""
+  sqlite:
+    path: "data/dragon_judge.db"
+
+# 推送服务配置
+notifications:
+  telegram:
+    enabled: true
+    bot_token: "your_telegram_bot_token"
+    chat_id: "your_chat_id"
+  wechat:
+    enabled: false
+    webhook_url: ""
+
+# 定时任务配置
+scheduler:
+  market_open_analysis: "09:25"  # 开盘竞价分析时间
+  daily_report: "15:30"          # 盘后日报时间
+  timezone: "Asia/Shanghai"
+
+# 情绪评分参数
+scoring:
+  # 各维度权重
+  weights:
+    height: 0.40      # 连板高度
+    competition: 0.30 # 竞争度
+    sector: 0.20      # 板块效应
+    sentiment: 0.05   # 市场情绪
+    quality: 0.05     # 涨停质量
+  
+  # 情绪周期阈值
+  thresholds:
+    ice_point: 20      # 冰点
+    start: 35          # 启动
+    fermentation: 50   # 发酵
+    climax: 70         # 高潮
+    divergence: 85     # 分化/退潮
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/dragon_judge.log"
+  max_size: "10MB"
+  backup_count: 7

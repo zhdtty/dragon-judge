@@ -1,0 +1,31 @@
+# Dragon Judge 依赖
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 数据采集
+tushare>=1.2.0
+akshare>=1.10.0
+requests>=2.31.0
+
+# 数据库
+pymongo>=4.5.0
+
+# 定时任务
+schedule>=1.2.0
+apscheduler>=3.10.0
+
+# 推送服务
+python-telegram-bot>=20.0
+
+# 工具
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+loguru>=0.7.0
+
+# 开发测试
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.0.0
+flake8>=6.0.0
