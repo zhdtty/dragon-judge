@@ -25,8 +25,12 @@ OUTCOME="${2:-success}"  # success, partial, failure, cancelled
 DURATION="${3:-0}"
 AGENT="${AGENT_NAME:-代码检查}"
 
-# 生成任务ID
-TASK_ID=$(echo "${TASK_DESC}-$(date +%s)" | md5sum | cut -c1-8)
+# 生成任务ID（兼容macOS和Linux）
+if command -v md5sum &> /dev/null; then
+    TASK_ID=$(echo "${TASK_DESC}-$(date +%s)" | md5sum | cut -c1-8)
+else
+    TASK_ID=$(echo "${TASK_DESC}-$(date +%s)" | md5 | cut -c1-8)
+fi
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 TODAY=$(date '+%Y-%m-%d')
 
